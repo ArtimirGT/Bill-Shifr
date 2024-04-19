@@ -36,12 +36,21 @@ class binary(QWidget):
     
     def encode(self):
         n = self.input_line.text()
-        self.result_line.setText(''.join([format(ord(i), '08b') for i in n]))
+        r = ''.join([format(ord(i), '016b') for i in n])
+        while '  ' in r:
+            r = r.replace('  ', ' ', 1)
+        r = r.replace(' ', '', 1)
+        self.result_line.setText(r)
     
     def decode(self):
         try:
             n = self.input_line.text()
-            self.result_line.setText(''.join(chr(int(n[i:i+8], 2)) for i in range(0, len(n), 8)))
+            print(n)
+            n = n.replace(' ', '')
+            while ' 0' in n:
+                n = n.replace(' 0', ' ')
+            self.result_line.setText(''.join(chr(int(n[i:i+16], 2)) for i in range(0, len(n), 16)))
+            print(n)
         except:
             self.result_line.setText('ошибка')
 
