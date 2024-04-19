@@ -1,5 +1,5 @@
-win_width, win_height = 800, 800
-win_x, win_y = 200, 200
+win_width, win_height = 1000, 800
+win_x, win_y = 0, 0
 txt_title = 'BIll Shifr'
 txt_manual = 'Lorem ipsum dolor sit amet, consectetur \n\
 adipiscing elit, sed do eiusmod \n\
@@ -12,8 +12,8 @@ velit esse cillum dolore eu fugiat nulla pariatur. \n\
 Excepteur sint occaecat cupidatat non proident, \n\
 sunt in culpa qui officia deserunt mollit anim id \n\
 est laborum.'
-txt_shif_1 = 'шифр1'
-txt_shif_2 = 'шифр2'
+txt_shif_1 = 'UTF-16'
+txt_shif_2 = "Caesar's cipher"
 txt_shif_3 = 'шифр3'
 txt_shif_4 = 'шифр4'
 txt_shif_5 = 'шифр5'

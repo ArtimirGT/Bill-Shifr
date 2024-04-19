@@ -9,7 +9,7 @@ class MainMenu(QWidget):
         super().__init__()
         self.set_appear()
         self.initUI()
-        #self.connects()
+        self.connects()
         self.show()
     def set_appear(self):
         self.setWindowTitle(txt_title)
@@ -43,7 +43,13 @@ class MainMenu(QWidget):
         self.r_line.addLayout(self.h_line)
         self.r_line.addWidget(QLabel(txt_manual), alignment=Qt.AlignRight)
         self.setLayout(self.r_line)
+    def connects(self):
+        self.next_but.clicked.connects(self.next)
 
+
+    def UTF_16(self):
+        self.hide()
+        self.window = 
 
 main = MainMenu()
 
