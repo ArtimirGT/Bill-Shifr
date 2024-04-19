@@ -1,8 +1,9 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout, QLineEdit
 from settings import *
+from menu import MainMenu
 
-class binary(QWidget):
+class Binary(QWidget):
     def __init__(self, app):
         super().__init__()
         self.set_appear()
@@ -11,9 +12,9 @@ class binary(QWidget):
         self.show()
         self.app = app
     def set_appear(self):
-        self.setWindowTitle(Title)
-        self.resize(win_x, win_y)
-        self.move(x, y)
+        self.setWindowTitle(txt_title)
+        self.resize(win_width, win_height)
+        self.move(win_x, win_y)
 
     def initUI(self):
         self.main_layout = QVBoxLayout()
@@ -22,6 +23,8 @@ class binary(QWidget):
         self.encode_but = QPushButton('encode')
         self.decode_but = QPushButton('decode')
         self.copy_to_clip_but = QPushButton('copy to clipboard')
+        self.back = QPushButton(txt_back)
+        self.main_layout.addWidget(self.back, alignment=Qt.AlignLeft)
         self.main_layout.addWidget(self.input_line, alignment=Qt.AlignLeft)
         self.main_layout.addWidget(self.result_line, alignment=Qt.AlignLeft)
         self.main_layout.addWidget(self.encode_but, alignment=Qt.AlignLeft)
@@ -30,6 +33,7 @@ class binary(QWidget):
         self.setLayout(self.main_layout)
 
     def connects(self):
+        self.back.clicked.connect(self.MainMenu)
         self.encode_but.clicked.connect(self.encode)
         self.decode_but.clicked.connect(self.decode)
         self.copy_to_clip_but.clicked.connect(self.copy)
@@ -58,7 +62,6 @@ class binary(QWidget):
         c = self.app.clipboard()
         c.setText(self.result_line.text())
 
-app = QApplication([])
-
-b = binary(app)
-app.exec_()
+    def MainMenu(self):
+        self.hide()
+        self.window = MainMenu

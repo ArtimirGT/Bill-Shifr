@@ -1,7 +1,8 @@
 win_width, win_height = 1000, 800
 win_x, win_y = 0, 0
 txt_title = 'BIll Shifr'
-txt_manual = 'Lorem ipsum dolor sit amet, consectetur \n\
+txt_back = 'BACK'
+txt_manual = 'UTF_16 - Перевод текста в двоичный код и обратно\n\
 adipiscing elit, sed do eiusmod \n\
 tempor incididunt ut labore et dolore magna aliqua.\n\
  Ut enim ad minim veniam, \n\

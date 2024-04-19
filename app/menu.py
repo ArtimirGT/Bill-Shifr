@@ -1,6 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout
 from settings import *
+from binary import Binary
 
 app = QApplication([])
 
@@ -39,18 +40,30 @@ class MainMenu(QWidget):
         self.h_line.addWidget(self.but_8, alignment=Qt.AlignLeft)
         self.h_line.addWidget(self.but_9, alignment=Qt.AlignLeft)
         self.h_line.addWidget(self.but_10, alignment=Qt.AlignLeft)
-
         self.r_line.addLayout(self.h_line)
         self.r_line.addWidget(QLabel(txt_manual), alignment=Qt.AlignRight)
         self.setLayout(self.r_line)
-    def connects(self):
-        self.next_but.clicked.connects(self.next)
 
+    def connects(self):
+        self.but_1.clicked.connect(self.UTF_16)
+        self.but_2.clicked.connect(self.Caesar_cipher)
+        #self.but_3.clicked.connect(self)
+        #self.but_4.clicked.connect(self)
+        #self.but_5.clicked.connect(self)
+        #self.but_6.clicked.connect(self)
+        #self.but_7.clicked.connect(self)
+        #self.but_8.clicked.connect(self)
+        #self.but_9.clicked.connect(self)
+        #self.but_10.clicked.connect(self)
 
     def UTF_16(self):
         self.hide()
-        self.window = 
+        self.window = binary(app)
 
-main = MainMenu()
+    def Caesar_cipher(self):
+        self.hide()
+        self.window = caesar()
+    
 
+window = MainMenu()
 app.exec_()
