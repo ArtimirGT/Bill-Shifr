@@ -44,12 +44,11 @@ class MainMenu(QWidget):
         self.r_line.addWidget(QLabel(txt_manual), alignment=Qt.AlignRight)
         self.setLayout(self.r_line)
     def connects(self):
-        self.next_but.clicked.connects(self.next)
+        pass
 
 
     def UTF_16(self):
-        self.hide()
-        self.window = 
+        pass
 
 main = MainMenu()
 

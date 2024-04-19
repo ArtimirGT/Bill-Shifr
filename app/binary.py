@@ -11,9 +11,9 @@ class binary(QWidget):
         self.show()
         self.app = app
     def set_appear(self):
-        self.setWindowTitle(Title)
-        self.resize(win_x, win_y)
-        self.move(x, y)
+        self.setWindowTitle(txt_title)
+        self.resize(win_width, win_height)
+        self.move(win_x, win_y)
 
     def initUI(self):
         self.main_layout = QVBoxLayout()
@@ -45,12 +45,10 @@ class binary(QWidget):
     def decode(self):
         try:
             n = self.input_line.text()
-            print(n)
             n = n.replace(' ', '')
             while ' 0' in n:
                 n = n.replace(' 0', ' ')
             self.result_line.setText(''.join(chr(int(n[i:i+16], 2)) for i in range(0, len(n), 16)))
-            print(n)
         except:
             self.result_line.setText('ошибка')
 
