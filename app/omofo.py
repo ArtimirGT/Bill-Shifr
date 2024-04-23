@@ -42,6 +42,7 @@ class omofo(QWidget):
 
     def connections(self):
         self.process_but.clicked.connect(self.process)
+        self.back_but.clicked.connect(self.back)
     
     def process(self):
         if self.mode_box.currentText() == 'encode':
@@ -68,8 +69,3 @@ class omofo(QWidget):
     def back(self):
         self.hide()
         self.parent.show()
-
-app = QApplication([])
-
-o = omofo(app, 1)
-app.exec_()
