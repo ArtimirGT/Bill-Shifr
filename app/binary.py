@@ -49,12 +49,10 @@ class utf_window(QWidget):
     def decode(self):
         try:
             n = self.input_line.text()
-            print(n)
             n = n.replace(' ', '')
             while ' 0' in n:
                 n = n.replace(' 0', ' ')
             self.result_line.setText(''.join(chr(int(n[i:i+16], 2)) for i in range(0, len(n), 16)))
-            print(n)
         except:
             self.result_line.setText('ошибка')
 
