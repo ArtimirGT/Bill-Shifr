@@ -1,7 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout
 from settings import *
-from binary import Binary
+from binary import *
 
 app = QApplication([])
 
@@ -58,7 +58,7 @@ class MainMenu(QWidget):
 
     def UTF_16(self):
         self.hide()
-        self.window = binary(app)
+        self.window = utf_window(app, self)
 
     def Caesar_cipher(self):
         self.hide()

@@ -1,11 +1,11 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout, QLineEdit
 from settings import *
-from menu import MainMenu
 
-class Binary(QWidget):
-    def __init__(self, app):
+class utf_window(QWidget):
+    def __init__(self, app, parent):
         super().__init__()
+        self.parent = parent
         self.set_appear()
         self.initUI()
         self.connects()
@@ -64,4 +64,4 @@ class Binary(QWidget):
 
     def MainMenu(self):
         self.hide()
-        self.window = MainMenu
+        self.parent.show()
