@@ -37,12 +37,15 @@ class omofo(QWidget):
         self.result_line = QLabel('')
         self.main_layout.addWidget(self.process_but, alignment=Qt.AlignLeft)
         self.main_layout.addWidget(self.result_line, alignment=Qt.AlignLeft)
+        self.copy_but = QPushButton('Copy to clipboard')
+        self.main_layout.addWidget(self.copy_but, alignment=Qt.AlignLeft)
         self.main_layout.setAlignment(Qt.AlignTop)
         self.setLayout(self.main_layout)
 
     def connections(self):
         self.process_but.clicked.connect(self.process)
         self.back_but.clicked.connect(self.back)
+        self.copy_but.clicked.connect(self.copy)
     
     def process(self):
         if self.mode_box.currentText() == 'encode':
@@ -55,16 +58,23 @@ class omofo(QWidget):
                     result += ' ' + str(key.find(i))
                     found.append(str(key.find(i)))
                 else:
-                    result += ' ' + str(key.find(i, int(found[-1])))
+                    result += ' ' + str(key.find(i, int(found[-1])+1))
+                    found.append(str(key.find(i, int(found[-1])+1)))
             self.result_line.setText(result)
         else:
             msg = self.input_line.text()
+            if msg[0] == ' ':
+                msg = msg.replace(' ', '', 1)
             key = self.key_line.text()
             msg = msg.split(' ')
             result = ''
             for i in msg:
                 result += key[int(i)]
             self.result_line.setText(result)
+
+    def copy(self):
+        c = self.app.clipboard()
+        c.setText(self.result_line.text())
 
     def back(self):
         self.hide()
