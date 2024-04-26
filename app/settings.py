@@ -16,7 +16,7 @@ est laborum.'
 txt_shif_1 = 'UTF-16'
 txt_shif_2 = "Caesar's cipher"
 txt_shif_3 = 'Omofor'
-txt_shif_4 = 'шифр4'
+txt_shif_4 = "Caesar's cipher with key"
 txt_shif_5 = 'шифр5'
 txt_shif_6 = 'шифр6'
 txt_shif_7 = 'шифр7'

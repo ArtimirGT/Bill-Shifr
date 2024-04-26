@@ -4,6 +4,7 @@ from settings import *
 from binary import *
 from caesar import *
 from omofo import *
+from key_caesar import *
 
 app = QApplication([])
 
@@ -50,7 +51,7 @@ class MainMenu(QWidget):
         self.but_1.clicked.connect(self.UTF_16)
         self.but_2.clicked.connect(self.Caesar_cipher)
         self.but_3.clicked.connect(self.Omofo)
-        #self.but_4.clicked.connect(self)
+        self.but_4.clicked.connect(self.Caesar_with_key)
         #self.but_5.clicked.connect(self)
         #self.but_6.clicked.connect(self)
         #self.but_7.clicked.connect(self)
@@ -69,6 +70,10 @@ class MainMenu(QWidget):
     def Omofo(self):
         self.hide()
         self.window = omofo(app, self)
+    
+    def Caesar_with_key(self):
+        self.hide()
+        self.window = caesar_with_key(app, self)
     
 
 window = MainMenu()
