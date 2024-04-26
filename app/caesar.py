@@ -3,8 +3,9 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLa
 from settings import *
 
 class caesar(QWidget):
-    def __init__(self, app):
+    def __init__(self, app, parent):
         super().__init__()
+        self.parent = parent
         self.app = app
         self.set_appear()
         self.initUI()
@@ -43,6 +44,7 @@ class caesar(QWidget):
     def connections(self):
         self.but.clicked.connect(self.encode)
         self.copy_but.clicked.connect(self.copy)
+        self.back_but.clicked.connect(self.back)
 
     def copy(self):
         c = self.app.clipboard()
@@ -75,7 +77,6 @@ class caesar(QWidget):
                 else:
                     self.itog += i
         self.result_line.setText(self.itog)
-app = QApplication([])
-
-c = caesar(app)
-app.exec_()
+    def back(self):
+        self.hide()
+        self.parent.show()

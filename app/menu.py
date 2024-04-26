@@ -2,6 +2,8 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout
 from settings import *
 from binary import *
+from caesar import *
+from omofo import *
 
 app = QApplication([])
 
@@ -47,7 +49,7 @@ class MainMenu(QWidget):
     def connects(self):
         self.but_1.clicked.connect(self.UTF_16)
         self.but_2.clicked.connect(self.Caesar_cipher)
-        #self.but_3.clicked.connect(self)
+        self.but_3.clicked.connect(self.Omofo)
         #self.but_4.clicked.connect(self)
         #self.but_5.clicked.connect(self)
         #self.but_6.clicked.connect(self)
@@ -62,7 +64,11 @@ class MainMenu(QWidget):
 
     def Caesar_cipher(self):
         self.hide()
-        self.window = caesar()
+        self.window = caesar(app, self)
+
+    def Omofo(self):
+        self.hide()
+        self.window = omofo(app, self)
     
 
 window = MainMenu()
