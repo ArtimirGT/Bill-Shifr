@@ -15,7 +15,7 @@ sunt in culpa qui officia deserunt mollit anim id \n\
 est laborum.'
 txt_shif_1 = 'UTF-16'
 txt_shif_2 = "Caesar's cipher"
-txt_shif_3 = 'шифр3'
+txt_shif_3 = 'Omofor'
 txt_shif_4 = 'шифр4'
 txt_shif_5 = 'шифр5'
 txt_shif_6 = 'шифр6'
