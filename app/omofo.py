@@ -68,9 +68,12 @@ class omofo(QWidget):
             key = self.key_line.text()
             msg = msg.split(' ')
             result = ''
-            for i in msg:
-                result += key[int(i)]
-            self.result_line.setText(result)
+            try:
+                for i in msg:
+                    result += key[int(i)]
+                self.result_line.setText(result)
+            except:
+                self.result_line.setText('Ошибка')
 
     def copy(self):
         c = self.app.clipboard()
