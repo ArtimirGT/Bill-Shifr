@@ -134,7 +134,3 @@ class caesar_with_key(QWidget):
     def back(self):
         self.hide()
         self.parent.show()
-
-app = QApplication([])
-c = caesar_with_key(app, 1)
-app.exec_()
