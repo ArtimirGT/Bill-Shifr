@@ -62,10 +62,11 @@ class caesar_with_key(QWidget):
         c.setText(self.result_line.text())
 
     def decode(self):
-        self.alfavit_EU =  'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        self.alfavit_RU = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
+        self.alfavit_EU =  txt_alfavit_EU
+        self.alfavit_RU = txt_alfavit_RU
         self.smeshenie = int(self.step_line.text())
         self.key_unedit = self.key_line.text().upper()
+        self.key = ''
         for i in self.key_unedit:
             if i not in self.key:
                 self.key += i
@@ -102,8 +103,8 @@ class caesar_with_key(QWidget):
             self.result_line.setText(txt_error)
 
     def encode(self):
-        self.alfavit_EU =  'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        self.alfavit_RU = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
+        self.alfavit_EU =  txt_alfavit_EU
+        self.alfavit_RU = txt_alfavit_RU
         self.smeshenie = int(self.step_line.text())
         self.key_unedit = self.key_line.text().upper()
         self.key = ''

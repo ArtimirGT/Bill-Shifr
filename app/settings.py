@@ -31,3 +31,6 @@ txt_decode = 'decode'
 txt_process = 'process'
 txt_copy = 'Copy to clipboard'
 txt_back = 'BACK'
+
+txt_alfavit_RU = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
+txt_alfavit_EU = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
