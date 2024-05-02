@@ -2,7 +2,7 @@ win_width, win_height = 1000, 800
 win_x, win_y = 0, 0
 txt_title = 'BIll Shifr'
 txt_back = 'BACK'
-txt_manual = 'UTF_16 - Перевод текста в двоичный код и обратно\n\
+txt_manual = 'Binary - Перевод текста в двоичный код UTF-16 и обратно\n\
 adipiscing elit, sed do eiusmod \n\
 tempor incididunt ut labore et dolore magna aliqua.\n\
  Ut enim ad minim veniam, \n\
@@ -13,10 +13,10 @@ velit esse cillum dolore eu fugiat nulla pariatur. \n\
 Excepteur sint occaecat cupidatat non proident, \n\
 sunt in culpa qui officia deserunt mollit anim id \n\
 est laborum.'
-txt_shif_1 = 'UTF-16'
+txt_shif_1 = 'Binary'
 txt_shif_2 = "Caesar's cipher"
-txt_shif_3 = 'Omofor'
-txt_shif_4 = "Caesar's cipher with key"
+txt_shif_3 = "Caesar's cipher with key"
+txt_shif_4 = 'Omofor'
 txt_shif_5 = 'шифр5'
 txt_shif_6 = 'шифр6'
 txt_shif_7 = 'шифр7'
