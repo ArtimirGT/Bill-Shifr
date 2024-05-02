@@ -1,5 +1,5 @@
-win_width, win_height = 1000, 800
-win_x, win_y = 0, 0
+win_width, win_height = 500, 400
+win_x, win_y = 500, 200
 txt_title = 'BIll Shifr'
 txt_back = 'BACK'
 txt_manual = 'Binary - Перевод текста в двоичный код UTF-16 и обратно\n\

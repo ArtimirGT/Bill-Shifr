@@ -1,4 +1,4 @@
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSettings
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout, QSizePolicy
 from settings import *
 from binary import *
@@ -65,22 +65,26 @@ class MainMenu(QWidget):
         #self.but_8.clicked.connect(self)
         #self.but_9.clicked.connect(self)
         #self.but_10.clicked.connect(self)
+    
+    def save_state(self):
+        state = [self.x(), self.y(), self.height(), self.width()]
+        return state
 
     def UTF_16(self):
         self.hide()
-        self.window = utf_window(app, self)
+        self.window = utf_window(app, self, self.save_state())
 
     def Caesar_cipher(self):
         self.hide()
-        self.window = caesar(app, self)
+        self.window = caesar(app, self, self.save_state())
 
     def Omofo(self):
         self.hide()
-        self.window = omofo(app, self)
+        self.window = omofo(app, self, self.save_state())
     
     def Caesar_with_key(self):
         self.hide()
-        self.window = caesar_with_key(app, self)
+        self.window = caesar_with_key(app, self, self.save_state())
     
 
 window = MainMenu()

@@ -1,10 +1,14 @@
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSettings
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout, QLineEdit
 from settings import *
 
 class utf_window(QWidget):
-    def __init__(self, app, parent):
+    def __init__(self, app, parent, state):
         super().__init__()
+        self.win_x = state[0]
+        self.win_y = state[1]
+        self.win_height = state[2]
+        self.win_width = state[3]
         self.parent = parent
         self.set_appear()
         self.initUI()
@@ -14,8 +18,8 @@ class utf_window(QWidget):
 
     def set_appear(self):
         self.setWindowTitle(txt_title)
-        self.resize(win_width, win_height)
-        self.move(win_x, win_y)
+        self.resize(self.win_width, self.win_height)
+        self.move(self.win_x, self.win_y)
 
     def initUI(self):
         self.main_layout = QVBoxLayout()
@@ -69,4 +73,6 @@ class utf_window(QWidget):
 
     def MainMenu(self):
         self.hide()
+        self.parent.move(self.x(), self.y())
+        self.parent.resize(self.width(), self.height())
         self.parent.show()
