@@ -21,11 +21,11 @@ class omofo(QWidget):
         self.main_layout = QVBoxLayout()
         self.top_layout = QHBoxLayout()
         self.input_layout = QVBoxLayout()
-        self.back_but = QPushButton('BACK')
+        self.back_but = QPushButton(txt_back)
         self.input_line = QLineEdit()
         self.key_line = QLineEdit()
         self.mode_box = QComboBox()
-        self.mode_box.addItems(['encode', 'decode'])
+        self.mode_box.addItems([txt_encode, txt_decode])
         self.input_layout.addWidget(self.back_but, alignment=Qt.AlignLeft)
         self.input_layout.addWidget(self.input_line, alignment=Qt.AlignLeft)
         self.input_layout.addWidget(self.key_line, alignment=Qt.AlignLeft)
@@ -33,11 +33,11 @@ class omofo(QWidget):
         self.top_layout.addWidget(self.mode_box, alignment=Qt.AlignLeft)
         self.top_layout.setAlignment(Qt.AlignLeft)
         self.main_layout.addLayout(self.top_layout)
-        self.process_but = QPushButton('process')
+        self.process_but = QPushButton(txt_process)
         self.result_line = QLabel('')
         self.main_layout.addWidget(self.process_but, alignment=Qt.AlignLeft)
         self.main_layout.addWidget(self.result_line, alignment=Qt.AlignLeft)
-        self.copy_but = QPushButton('Copy to clipboard')
+        self.copy_but = QPushButton(txt_copy)
         self.main_layout.addWidget(self.copy_but, alignment=Qt.AlignLeft)
         self.main_layout.setAlignment(Qt.AlignTop)
         self.setLayout(self.main_layout)
@@ -48,7 +48,7 @@ class omofo(QWidget):
         self.copy_but.clicked.connect(self.copy)
     
     def process(self):
-        if self.mode_box.currentText() == 'encode':
+        if self.mode_box.currentText() == txt_encode:
             msg = self.input_line.text()
             key = self.key_line.text()
             result = ''
@@ -73,7 +73,7 @@ class omofo(QWidget):
                     result += key[int(i)]
                 self.result_line.setText(result)
             except:
-                self.result_line.setText('Ошибка')
+                self.result_line.setText(txt_error)
 
     def copy(self):
         c = self.app.clipboard()

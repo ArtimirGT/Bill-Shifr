@@ -23,3 +23,11 @@ txt_shif_7 = 'шифр7'
 txt_shif_8 = 'шифр8'
 txt_shif_9 = 'шифр9'
 txt_shif_10 = 'шифр10'
+
+txt_error = 'Ошибка'
+
+txt_encode = 'encode'
+txt_decode = 'decode'
+txt_process = 'process'
+txt_copy = 'Copy to clipboard'
+txt_back = 'BACK'

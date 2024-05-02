@@ -20,9 +20,9 @@ class utf_window(QWidget):
         self.main_layout = QVBoxLayout()
         self.input_line = QLineEdit()
         self.result_line = QLabel()
-        self.encode_but = QPushButton('encode')
-        self.decode_but = QPushButton('decode')
-        self.copy_to_clip_but = QPushButton('copy to clipboard')
+        self.encode_but = QPushButton(txt_encode)
+        self.decode_but = QPushButton(txt_decode)
+        self.copy_to_clip_but = QPushButton(txt_copy)
         self.back = QPushButton(txt_back)
         self.main_layout.addWidget(self.back, alignment=Qt.AlignLeft)
         self.main_layout.addWidget(self.input_line, alignment=Qt.AlignLeft)
@@ -54,7 +54,7 @@ class utf_window(QWidget):
                 n = n.replace(' 0', ' ')
             self.result_line.setText(''.join(chr(int(n[i:i+16], 2)) for i in range(0, len(n), 16)))
         except:
-            self.result_line.setText('ошибка')
+            self.result_line.setText(txt_error)
 
     def copy(self):
         c = self.app.clipboard()
