@@ -11,6 +11,7 @@ class utf_window(QWidget):
         self.connects()
         self.show()
         self.app = app
+
     def set_appear(self):
         self.setWindowTitle(txt_title)
         self.resize(win_width, win_height)
@@ -25,11 +26,12 @@ class utf_window(QWidget):
         self.copy_to_clip_but = QPushButton(txt_copy)
         self.back = QPushButton(txt_back)
         self.main_layout.addWidget(self.back, alignment=Qt.AlignLeft)
-        self.main_layout.addWidget(self.input_line, alignment=Qt.AlignLeft)
+        self.main_layout.addWidget(self.input_line, alignment=Qt.AlignTop)
         self.main_layout.addWidget(self.result_line, alignment=Qt.AlignLeft)
         self.main_layout.addWidget(self.encode_but, alignment=Qt.AlignLeft)
         self.main_layout.addWidget(self.decode_but, alignment=Qt.AlignLeft)
         self.main_layout.addWidget(self.copy_to_clip_but, alignment=Qt.AlignLeft)
+        self.main_layout.setAlignment(Qt.AlignTop)
         self.setLayout(self.main_layout)
 
     def connects(self):
