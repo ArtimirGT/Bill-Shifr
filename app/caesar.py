@@ -21,6 +21,7 @@ class caesar(QWidget):
         self.main_layout = QVBoxLayout()
         self.top_layout = QHBoxLayout()
         self.input_layout = QVBoxLayout()
+        self.choice_layout = QHBoxLayout()
         self.back_but = QPushButton(txt_back)
         self.input_layout.addWidget(self.back_but, alignment=Qt.AlignLeft)
         self.language_box = QComboBox()
@@ -30,10 +31,13 @@ class caesar(QWidget):
         self.step_line = QLineEdit()
         self.input_layout.addWidget(self.step_line, alignment=Qt.AlignLeft)
         self.top_layout.addLayout(self.input_layout)
-        self.top_layout.addWidget(self.language_box, alignment = Qt.AlignLeft)
+        #self.top_layout.addWidget(self.language_box, alignment = Qt.AlignLeft)
+        self.choice_layout.addWidget(self.language_box, alignment=Qt.AlignLeft)
+        self.process_but = QPushButton(txt_process)
+        self.choice_layout.addWidget(self.process_but, alignment=Qt.AlignLeft)
         self.main_layout.addLayout(self.top_layout)
-        self.but = QPushButton(txt_process)
-        self.main_layout.addWidget(self.but, alignment=Qt.AlignLeft)
+        self.choice_layout.setAlignment(Qt.AlignLeft)
+        self.main_layout.addLayout(self.choice_layout)
         self.result_line = QLabel('')
         self.main_layout.addWidget(self.result_line, alignment=Qt.AlignLeft)
         self.copy_but = QPushButton(txt_copy)
@@ -42,7 +46,7 @@ class caesar(QWidget):
         self.setLayout(self.main_layout)
     
     def connections(self):
-        self.but.clicked.connect(self.encode)
+        self.process_but.clicked.connect(self.encode)
         self.copy_but.clicked.connect(self.copy)
         self.back_but.clicked.connect(self.back)
 
