@@ -19,6 +19,7 @@ class utf_window(QWidget):
 
     def initUI(self):
         self.main_layout = QVBoxLayout()
+        self.choice_layout = QHBoxLayout()
         self.input_line = QLineEdit()
         self.result_line = QLabel()
         self.encode_but = QPushButton(txt_encode)
@@ -28,8 +29,12 @@ class utf_window(QWidget):
         self.main_layout.addWidget(self.back, alignment=Qt.AlignLeft)
         self.main_layout.addWidget(self.input_line, alignment=Qt.AlignTop)
         self.main_layout.addWidget(self.result_line, alignment=Qt.AlignLeft)
-        self.main_layout.addWidget(self.encode_but, alignment=Qt.AlignLeft)
-        self.main_layout.addWidget(self.decode_but, alignment=Qt.AlignLeft)
+        #self.main_layout.addWidget(self.encode_but, alignment=Qt.AlignLeft)
+        #self.main_layout.addWidget(self.decode_but, alignment=Qt.AlignLeft)
+        self.choice_layout.addWidget(self.encode_but, alignment=Qt.AlignLeft)
+        self.choice_layout.addWidget(self.decode_but, alignment=Qt.AlignLeft)
+        self.choice_layout.setAlignment(Qt.AlignLeft)
+        self.main_layout.addLayout(self.choice_layout)
         self.main_layout.addWidget(self.copy_to_clip_but, alignment=Qt.AlignLeft)
         self.main_layout.setAlignment(Qt.AlignTop)
         self.setLayout(self.main_layout)
