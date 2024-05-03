@@ -1,58 +1,48 @@
+from itertools import cycle
 def form_dict():
-    d = {}
-    iter = 0
-    for i in range(0,127):
-        d[iter] = chr(i)
-        iter = iter +1
-    return d
-print(form_dict())
-
-def encode_val(word):
-    list_code = []
-    lent = len(word)
-    d = form_dict() 
-
-    for w in range(lent):
-        for value in d:
-            if word[w] == d[value]:
-               list_code.append(value) 
-    return list_code
-
-print(encode_val('aboba'))
-https://habr.com/ru/articles/140820/
+    return dict([(i, chr(i)) for i in range(127)])
 
 def comparator(value, key):
-    len_key = len(key)
-    dic = {}
-    iter = 0
-    full = 0
+    return dict([(idx, [ch[0], ch[1]])
+                for idx, ch in enumerate(zip(value, cycle(key)))])
 
-    for i in value:
-        dic[full] = [i,key[iter]]
-        full = full + 1
-        iter = iter +1
-        if (iter >= len_key):
-            iter = 0 
-    return dic 
+def encode_val(word):
+    d = form_dict()
+    return [k for c in word for k,v in d.items() if v == c]
 
 def full_encode(value, key):
-    dic = comparator(value, key)
-    print 'Compare full encode', dic
-    lis = []
-    d = form_dict()
-
-    for v in dic:
-        go = (dic[v][0]+dic[v][1]) % len(d)
-        lis.append(go) 
-    return lis
+    d = comparator(value, key)
+    l = len(form_dict())
+    return [(v[0] + v[1]) % l for v in d.values()]
 
 def decode_val(list_in):
-    list_code = []
-    lent = len(list_in)
-    d = form_dict() 
+    l = len(list_in)
+    d = form_dict()
+    return [d[i] for i in list_in if i in d]
 
-    for i in range(lent):
-        for value in d:
-            if list_in[i] == value:
-               list_code.append(d[value]) 
-    return list_code
+def full_decode(value, key):
+    d = comparator(value, key)
+    l = len(form_dict())
+    return [(v[0] - v[1]) % l for v in d.values()]
+
+word = 'Hello world'
+key = 'key'
+
+print(form_dict())
+print('Слово: '+ word)
+print('Ключ: '+ key)
+
+key_encoded = encode_val(key)
+value_encoded = encode_val(word)
+ 
+print('Value= ',value_encoded)
+print('Key= ', key_encoded)
+
+shifre = full_encode(value_encoded, key_encoded)
+print(shifre)
+print('Шифр=', ''.join(decode_val(shifre)))
+
+decoded = full_decode(shifre, key_encoded)
+print('Decode list=', decoded)
+decode_word_list = decode_val(decoded)
+print('Word=',''.join(decode_word_list))

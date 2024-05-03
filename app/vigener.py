@@ -47,21 +47,10 @@ class VigenerCipher(QWidget):
         self.back_but.clicked.connect(self.back)
         self.process_but.clicked.connect(self.encode_decode)
 
-    def full_decode(self,value,key):
-        dic = self.comparator(value, key)
-        print('Deshifre=',dic)
-        d = self.form_dict()
-        lis =[]
-
-        for v in dic:
-            go = (dic[v][0]-dic[v][1]+len(d)) % len(d)
-            lis.append(go) 
-        return lis
-
     def form_dict(self):
         d = {}
         iter = 0
-        for i in range(65,127+65):
+        for i in range(32,127):
             d[iter] = chr(i)
             iter = iter + 1
         return d
@@ -70,12 +59,13 @@ class VigenerCipher(QWidget):
         list_code = []
         lent = len(word)
         d = self.form_dict() 
+
         for w in range(lent):
             for value in d:
                 if word[w] == d[value]:
-                    list_code.append(value) 
+                   list_code.append(value) 
         return list_code
-    
+
     def comparator(self, value, key):
         len_key = len(key)
         dic = {}
@@ -88,7 +78,7 @@ class VigenerCipher(QWidget):
             iter = iter + 1
             if (iter >= len_key):
                 iter = 0 
-        return dic
+        return dic 
 
     def full_encode(self, value, key):
         dic = self.comparator(value, key)
@@ -108,41 +98,40 @@ class VigenerCipher(QWidget):
         for i in range(lent):
             for value in d:
                 if list_in[i] == value:
-                    list_code.append(d[value]) 
+                   list_code.append(d[value]) 
         return list_code
 
+    def full_decode(self, value, key):
+        dic = self.comparator(value, key)
+        d = self.form_dict() 
+        lis =[]
+
+        for v in dic:
+            go = (dic[v][0]-dic[v][1]+len(d)) % len(d)
+            lis.append(go) 
+        return lis
+
     def encode_decode(self):
-        self.message = self.input_line.text().upper()
-        self.key = self.step_line.text().upper()
-        self.answer = ''
+        self.message = self.input_line.text()
+        self.key = self.step_line.text()
         self.encoding = self.encoding_box.currentText()
         if self.encoding == 'encode':
-            self.form_dict()
             en_mes = self.encode_val(self.message)
             en_key = self.encode_val(self.key)
             secret = self.full_encode(en_mes,en_key)
             secret_word = self.decode_val(secret)
             self.word_line.setText(''.join(secret_word))
-            # Возвращает закодированное слово и ключ
+            # Возвращает закодированное слово
         else:
             word = self.message
             key = self.key
-
-        
             key_encoded = self.encode_val(key)
             value_encoded = self.encode_val(word)
-        
-        
-            shifre = self.full_encode(value_encoded, key_encoded)
-
-        
             decoded = self.full_decode(value_encoded, key_encoded)
-
             decode_word_list = self.decode_val(decoded)
-
-            result = decode_word_list
-            self.word_line.setText(''.join(result))
-                # Возвращает закодированное слово
+            print(decode_word_list)
+            self.word_line.setText(''.join(decode_word_list))
+            # Возвращает разкодированное слово
     def copy(self):
         c = self.app.clipboard()
         c.setText(self.word_line.text())
