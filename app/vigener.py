@@ -3,13 +3,13 @@ from PyQt5.QtWidgets import QComboBox, QApplication, QWidget, QPushButton, QVBox
 from settings import *
 
 class VigenerCipher(QWidget):
-    def __init__(self):
+    def __init__(self,app):
         super().__init__()
         self.set_appear()
         self.initUI()
         self.connects()
         self.show()
-        #self.app = app
+        self.app = app
         #self.parent = parent
 
     def set_appear(self):
@@ -47,12 +47,23 @@ class VigenerCipher(QWidget):
         self.back_but.clicked.connect(self.back)
         self.process_but.clicked.connect(self.encode_decode)
 
+    def full_decode(self,value,key):
+        dic = self.comparator(value, key)
+        print('Deshifre=',dic)
+        d = self.form_dict()
+        lis =[]
+
+        for v in dic:
+            go = (dic[v][0]-dic[v][1]+len(d)) % len(d)
+            lis.append(go) 
+        return lis
+
     def form_dict(self):
         d = {}
         iter = 0
-        for i in range(0,127):
+        for i in range(65,127+65):
             d[iter] = chr(i)
-            iter = iter +1
+            iter = iter + 1
         return d
 
     def encode_val(self, word):
@@ -66,39 +77,39 @@ class VigenerCipher(QWidget):
         return list_code
     
     def comparator(self, value, key):
-    len_key = len(key)
-    dic = {}
-    iter = 0
-    full = 0
+        len_key = len(key)
+        dic = {}
+        iter = 0
+        full = 0
 
-    for i in value:
-        dic[full] = [i,key[iter]]
-        full = full + 1
-        iter = iter +1
-        if (iter >= len_key):
-            iter = 0 
-    return dic
+        for i in value:
+            dic[full] = [i,key[iter]]
+            full = full + 1
+            iter = iter + 1
+            if (iter >= len_key):
+                iter = 0 
+        return dic
 
     def full_encode(self, value, key):
-    dic = self.comparator(value, key)
-    lis = []
-    d = self.form_dict()
+        dic = self.comparator(value, key)
+        lis = []
+        d = self.form_dict()
 
-    for v in dic:
-        go = (dic[v][0]+dic[v][1]) % len(d)
-        lis.append(go) 
-    return lis
+        for v in dic:
+            go = (dic[v][0]+dic[v][1]) % len(d)
+            lis.append(go) 
+        return lis
 
-def decode_val(self, list_in):
-    list_code = []
-    lent = len(list_in)
-    d = self.form_dict() 
+    def decode_val(self, list_in):
+        list_code = []
+        lent = len(list_in)
+        d = self.form_dict() 
 
-    for i in range(lent):
-        for value in d:
-            if list_in[i] == value:
-               list_code.append(d[value]) 
-    return list_code
+        for i in range(lent):
+            for value in d:
+                if list_in[i] == value:
+                    list_code.append(d[value]) 
+        return list_code
 
     def encode_decode(self):
         self.message = self.input_line.text().upper()
@@ -109,16 +120,32 @@ def decode_val(self, list_in):
             self.form_dict()
             en_mes = self.encode_val(self.message)
             en_key = self.encode_val(self.key)
-
-                # Возвращает закодированное слово и ключ
+            secret = self.full_encode(en_mes,en_key)
+            secret_word = self.decode_val(secret)
+            self.word_line.setText(''.join(secret_word))
+            # Возвращает закодированное слово и ключ
         else:
-            pass
+            word = self.message
+            key = self.key
+
+        
+            key_encoded = self.encode_val(key)
+            value_encoded = self.encode_val(word)
+        
+        
+            shifre = self.full_encode(value_encoded, key_encoded)
+
+        
+            decoded = self.full_decode(value_encoded, key_encoded)
+
+            decode_word_list = self.decode_val(decoded)
+
+            result = decode_word_list
+            self.word_line.setText(''.join(result))
                 # Возвращает закодированное слово
     def copy(self):
-        c1 = self.app.clipboard()
-        c2 = self.app.clipboard()
-        c1.setText(self.word_line.text())
-        c2.setText(self.key_line.text())
+        c = self.app.clipboard()
+        c.setText(self.word_line.text())
 
     def back(self):
         self.hide()
@@ -128,5 +155,5 @@ def decode_val(self, list_in):
         print(self.encoding_box.currentText())
 
 app = QApplication([])
-window = VigenerCipher()
+window = VigenerCipher(app)
 app.exec_()
