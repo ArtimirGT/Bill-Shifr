@@ -3,19 +3,23 @@ from PyQt5.QtWidgets import QComboBox, QApplication, QWidget, QPushButton, QVBox
 from settings import *
 
 class VigenerCipher(QWidget):
-    def __init__(self,app):
+    def __init__(self,app, parent, state):
         super().__init__()
+        self.win_x = state[0]
+        self.win_y = state[1]
+        self.win_height = state[2]
+        self.win_width = state[3]
         self.set_appear()
         self.initUI()
         self.connects()
         self.show()
         self.app = app
-        #self.parent = parent
+        self.parent = parent
 
     def set_appear(self):
         self.setWindowTitle(txt_title)
-        self.resize(win_width, win_height)
-        self.move(win_x, win_y)
+        self.resize(self.win_width, self.win_height)
+        self.move(self.win_x, self.win_y)
     
     def initUI(self):
         self.main_layout = QVBoxLayout()
@@ -138,11 +142,9 @@ class VigenerCipher(QWidget):
 
     def back(self):
         self.hide()
+        self.parent.move(self.x(), self.y())
+        self.parent.resize(self.width(), self.height())
         self.parent.show()
 
     def check(self):
         print(self.encoding_box.currentText())
-
-app = QApplication([])
-window = VigenerCipher(app)
-app.exec_()

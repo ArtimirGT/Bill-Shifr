@@ -5,6 +5,7 @@ from binary import *
 from caesar import *
 from omofo import *
 from key_caesar import *
+from vigener import *
 
 app = QApplication([])
 
@@ -59,7 +60,7 @@ class MainMenu(QWidget):
         self.but_2.clicked.connect(self.Caesar_cipher)
         self.but_3.clicked.connect(self.Caesar_with_key)
         self.but_4.clicked.connect(self.Omofo)
-        #self.but_5.clicked.connect(self)
+        self.but_5.clicked.connect(self.Vigener)
         #self.but_6.clicked.connect(self)
         #self.but_7.clicked.connect(self)
         #self.but_8.clicked.connect(self)
@@ -85,6 +86,10 @@ class MainMenu(QWidget):
     def Caesar_with_key(self):
         self.hide()
         self.window = caesar_with_key(app, self, self.save_state())
+    
+    def Vigener(self):
+        self.hide()
+        self.window = VigenerCipher(app, self, self.save_state())
     
 
 window = MainMenu()
